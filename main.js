@@ -72,7 +72,7 @@ let app = Vue.createApp({
     },
     getDownReactorMult() {
       let p = this.player;
-      return 1 + (10 * 4 ** p.downReactor) / (1 + p.number);
+      return 1 + (10 * 4 ** p.downReactor - 10) / (1 + p.number);
     },
     format(num) {
       return num.toFixed(2);

@@ -1,11 +1,38 @@
 <html>
   <head>
     <title>Number goes down 0</title>
+    <link href="stylesheet.css" rel="stylesheet"></link>
+    <script defer src="https://unpkg.com/vue@3"></script>
+    <script defer src="main.js"></script>
   </head>
-  <body>
+  <body id="body">
     <h1>Number goes down 0</h1>
-    <span id="number0">10</span><br>
-    <button onclick="numberGoesDown()">Number goes down</button>
+    <transition name="fadeIn">
+      <span v-if="player.numLevel>1">Num Level: {{player.numLevel}}<br></span>
+    </transition>
+    {{format(player.number)}}
+    <br />
+    <button @click="numberGoesDown()">Number goes down{{cooldown > 0?` (${format(cooldown/1000)})`:''}}</button>
+    <br />
+    <span :style="{opacity:Math.max(0,getRefusal() - getProd())}">The number refuses to go down</span>
+    <br>
+    <transition name="fadeIn">
+      <span v-if="player.downs>=5||player.downer>0">Downs: {{format(player.downs)}}</span>
+    </transition><br>
+    <transition name="fadeIn">
+      <span v-if="player.downs>=10||player.downer>0">
+        Downer: {{player.downer}}<br>
+        <button @click="downerGoesDown()">Downer goes down</button><br>
+        <button @click="buyDowner()">Get downer<br>Cost: {{getDownerCost()}} downs</button><br>
+      </span>
+    </transition>
+    <transition name="fadeIn">
+      <span v-if="player.numLevel > 1">
+        Down Reactor: {{player.downReactor}}<br>
+        Down Reactors are more powerful the lower the number is.<br>
+        x{{format(getDownReactorMult())}} multiplier to downer power<br>
+        <button @click="buyDownReactor()">Get down reactor<br>Cost: {{getDownReactorCost()}} downs</button>
+      </span>
+    </transition>
   </body>
-  <script src="main.js"></script>
 </html>

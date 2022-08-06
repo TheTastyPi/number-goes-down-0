@@ -1,0 +1,9 @@
+.fadeIn-enter-active,
+.fadeIn-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fadeIn-enter-from,
+.fadeIn-leave-to {
+  opacity: 0;
+}

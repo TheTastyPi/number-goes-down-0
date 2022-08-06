@@ -34,6 +34,7 @@ let app = Vue.createApp({
       p.number -= amt;
       p.downs += amt;
       if (p.number < 0) {
+        p.downs += p.number;
         p.number = 0;
         p.numLevel++;
         this.setCooldown(5000);

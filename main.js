@@ -95,8 +95,8 @@ let app = Vue.createApp({
       let rep = 1;
       dt *= gameSpeed;
       if (dt > 1000) {
-        dt /= 100;
-        rep = 100;
+        dt /= 1000;
+        rep = 1000;
       }
       for (let i = 0; i < rep; i++) this.step(dt);
       window.requestAnimationFrame(this.nextFrame);
